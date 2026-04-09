@@ -1,0 +1,24 @@
+{
+  "name": "anurajsinh_portfolio",
+  "version": "1.0.0",
+  "description": "",
+  "main": "main.js",
+  "scripts": {
+    "test": "echo \"Error: no test specified\" && exit 1"
+  },
+  "repository": {
+    "type": "git",
+    "url": "git+https://github.com/chetanpatil09/Chetan-Patil.git"
+  },
+  "keywords": [],
+  "author": "",
+  "license": "ISC",
+  "type": "commonjs",
+  "bugs": {
+    "url": "https://github.com/chetanpatil09/Chetan-Patil/issues"
+  },
+  "homepage": "https://github.com/chetanpatil09/Chetan-Patil#readme",
+  "dependencies": {
+    "nodemailer": "^8.0.5"
+  }
+}
