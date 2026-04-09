@@ -17,11 +17,12 @@ document.addEventListener('DOMContentLoaded', () => {
   const preloader = document.getElementById('preloader');
   if (preloader) {
     window.addEventListener('load', () => {
+      preloader.style.transition = 'opacity 0.4s ease';
+      preloader.style.opacity = '0';
+
       setTimeout(() => {
-        preloader.style.transition = 'opacity 0.6s ease';
-        preloader.style.opacity   = '0';
-        setTimeout(() => (preloader.style.display = 'none'), 600);
-      }, 500);
+        preloader.style.display = 'none';
+      }, 400);
     });
   }
 
@@ -35,7 +36,7 @@ document.addEventListener('DOMContentLoaded', () => {
 
   /* ── Active nav link on scroll ── */
   const sections = document.querySelectorAll('section[id]');
-  const navLinks  = document.querySelectorAll('nav li a');
+  const navLinks = document.querySelectorAll('nav li a');
 
   function setActiveLink() {
     const scrollPos = window.scrollY + 100;
@@ -58,10 +59,10 @@ document.addEventListener('DOMContentLoaded', () => {
   setActiveLink(); // run once on load
 
   /* ── Contact form ── */
-  const form    = document.getElementById('contact-form');
+  const form = document.getElementById('contact-form');
   const success = document.getElementById('success');
-  const error   = document.getElementById('error');
-  const submit  = document.getElementById('submit');
+  const error = document.getElementById('error');
+  const submit = document.getElementById('submit');
 
   // Show a feedback message inside the given element
   function showMsg(el, msg) {
@@ -74,18 +75,18 @@ document.addEventListener('DOMContentLoaded', () => {
     clearTimeout(el._hideTimer);
     el._hideTimer = setTimeout(() => {
       el.style.transition = 'opacity 0.5s ease';
-      el.style.opacity    = '0';
+      el.style.opacity = '0';
       setTimeout(() => {
-        el.style.display  = 'block'; // keep in DOM but invisible
-        el.style.opacity  = '1';
-        el.style.display  = 'none';
+        el.style.display = 'block'; // keep in DOM but invisible
+        el.style.opacity = '1';
+        el.style.display = 'none';
       }, 500);
     }, 6000);
   }
 
   function hideAll() {
     if (success) { success.style.display = 'none'; }
-    if (error)   { error.style.display   = 'none'; }
+    if (error) { error.style.display = 'none'; }
   }
 
   // Highlight an invalid field briefly
@@ -99,9 +100,9 @@ document.addEventListener('DOMContentLoaded', () => {
       e.preventDefault();
       hideAll();
 
-      const nameField    = document.getElementById('cname');
-      const emailField   = document.getElementById('cemail');
-      const phoneField   = document.getElementById('cphone');
+      const nameField = document.getElementById('cname');
+      const emailField = document.getElementById('cemail');
+      const phoneField = document.getElementById('cphone');
       const messageField = document.getElementById('cmessage');
 
       /* ── Client-side validation ── */
@@ -128,23 +129,23 @@ document.addEventListener('DOMContentLoaded', () => {
       }
 
       /* ── Loading state ── */
-      const originalLabel  = submit.textContent;
-      submit.textContent   = 'Sending…';
-      submit.disabled      = true;
+      const originalLabel = submit.textContent;
+      submit.textContent = 'Sending…';
+      submit.disabled = true;
       submit.style.opacity = '0.75';
 
       const payload = {
-        name:    nameField.value.trim(),
-        email:   emailField.value.trim(),
-        phone:   phoneField?.value.trim() || '',
+        name: nameField.value.trim(),
+        email: emailField.value.trim(),
+        phone: phoneField?.value.trim() || '',
         message: messageField.value.trim(),
       };
 
       try {
         const response = await fetch('/api/contact', {
-          method:  'POST',
+          method: 'POST',
           headers: { 'Content-Type': 'application/json' },
-          body:    JSON.stringify(payload),
+          body: JSON.stringify(payload),
         });
 
         const data = await response.json();
@@ -166,8 +167,8 @@ document.addEventListener('DOMContentLoaded', () => {
           '❌ Network error — check your connection or email me directly at anurajsinhrajput@gmail.com'
         );
       } finally {
-        submit.textContent   = originalLabel;
-        submit.disabled      = false;
+        submit.textContent = originalLabel;
+        submit.disabled = false;
         submit.style.opacity = '1';
       }
     });
